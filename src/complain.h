@@ -107,7 +107,7 @@ bool warning_is_unset (warnings flags);
 
 /** Make a complaint, with maybe a location.  */
 void complain (location const *loc, warnings flags, char const *message, ...)
-  __attribute__ ((__format__ (__printf__, 3, 4)));
+  __attribute__ ((__format__ (gnu_printf, 3, 4)));
 
 /** Likewise, but with an \a argc/argv interface.  */
 void complain_args (location const *loc, warnings w, unsigned *indent,
@@ -116,7 +116,7 @@ void complain_args (location const *loc, warnings w, unsigned *indent,
 /** Make a complaint with location and some indentation.  */
 void complain_indent (location const *loc, warnings flags, unsigned *indent,
                       char const *message, ...)
-  __attribute__ ((__format__ (__printf__, 4, 5)));
+  __attribute__ ((__format__ (gnu_printf, 4, 5)));
 
 
 /** GNU Bison extension not valid with POSIX Yacc.  */

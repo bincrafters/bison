@@ -68,9 +68,9 @@ extern "C" {
 # define vasnprintf rpl_vasnprintf
 #endif
 extern char * asnprintf (char *resultbuf, size_t *lengthp, const char *format, ...)
-       _GL_ATTRIBUTE_FORMAT ((__printf__, 3, 4));
+       _GL_ATTRIBUTE_FORMAT ((gnu_printf, 3, 4));
 extern char * vasnprintf (char *resultbuf, size_t *lengthp, const char *format, va_list args)
-       _GL_ATTRIBUTE_FORMAT ((__printf__, 3, 0));
+       _GL_ATTRIBUTE_FORMAT ((gnu_printf, 3, 0));
 
 #ifdef __cplusplus
 }
