@@ -137,10 +137,10 @@ create_pipe (const char *progname,
   prog_argv = prepare_spawn (prog_argv);
 
   if (pipe_stdout)
-    if (pipe2_safer (ifd, O_BINARY | O_CLOEXEC) < 0)
+    if (pipe2_safer (ifd, O_TEXT | O_CLOEXEC) < 0)
       error (EXIT_FAILURE, errno, _("cannot create pipe"));
   if (pipe_stdin)
-    if (pipe2_safer (ofd, O_BINARY | O_CLOEXEC) < 0)
+    if (pipe2_safer (ofd, O_TEXT | O_CLOEXEC) < 0)
       error (EXIT_FAILURE, errno, _("cannot create pipe"));
 /* Data flow diagram:
  *
