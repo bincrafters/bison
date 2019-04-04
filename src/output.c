@@ -43,6 +43,7 @@
 #include "scan-skel.h"
 #include "symtab.h"
 #include "tables.h"
+#include "pathtools.h"
 
 static struct obstack format_obstack;
 
@@ -566,7 +567,7 @@ static void
 output_skeleton (void)
 {
   /* Compute the names of the package data dir and skeleton files.  */
-  char const *m4 = (m4 = getenv ("M4")) ? m4 : M4;
+  char const *m4 = (m4 = getenv ("M4")) ? m4 : single_path_relocation(BINDIR, M4);
   char const *datadir = pkgdatadir ();
   char *skeldir = xpath_join (datadir, "skeletons");
   char *m4sugar = xpath_join (datadir, "m4sugar/m4sugar.m4");
@@ -748,6 +749,10 @@ pkgdatadir (void)
   else
     {
       char const *cp = getenv ("BISON_PKGDATADIR");
-      return cp ? cp : relocate2 (PKGDATADIR, &relocate_buffer);
+      if (cp)
+          return cp;
+
+      char * _dir = single_path_relocation(BINDIR, PKGDATADIR);
+      return _dir;
     }
 }

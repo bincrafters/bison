@@ -562,7 +562,8 @@ am_src_bison_OBJECTS = src/bison-AnnotationList.$(OBJEXT) \
 	src/bison-ielr.$(OBJEXT) src/bison-location.$(OBJEXT) \
 	src/bison-main.$(OBJEXT) src/bison-muscle-tab.$(OBJEXT) \
 	src/bison-named-ref.$(OBJEXT) src/bison-nullable.$(OBJEXT) \
-	src/bison-output.$(OBJEXT) src/bison-parse-gram.$(OBJEXT) \
+	src/bison-output.$(OBJEXT) src/bison-pathtools.$(OBJEXT) \
+	src/bison-parse-gram.$(OBJEXT) \
 	src/bison-print-xml.$(OBJEXT) src/bison-print.$(OBJEXT) \
 	src/bison-print_graph.$(OBJEXT) src/bison-reader.$(OBJEXT) \
 	src/bison-reduce.$(OBJEXT) src/bison-relation.$(OBJEXT) \
@@ -707,7 +708,8 @@ am__depfiles_remade = examples/c++/$(DEPDIR)/simple-simple.Po \
 	src/$(DEPDIR)/bison-location.Po src/$(DEPDIR)/bison-main.Po \
 	src/$(DEPDIR)/bison-muscle-tab.Po \
 	src/$(DEPDIR)/bison-named-ref.Po \
-	src/$(DEPDIR)/bison-nullable.Po src/$(DEPDIR)/bison-output.Po \
+	src/$(DEPDIR)/bison-nullable.Po src/$(DEPDIR)/bison-pathtools.Po \
+	src/$(DEPDIR)/bison-output.Po \
 	src/$(DEPDIR)/bison-parse-gram.Po \
 	src/$(DEPDIR)/bison-print-xml.Po src/$(DEPDIR)/bison-print.Po \
 	src/$(DEPDIR)/bison-print_graph.Po \
@@ -2898,6 +2900,8 @@ src_bison_SOURCES = \
   src/nullable.h                                \
   src/output.c                                  \
   src/output.h                                  \
+  src/pathtools.c                               \
+  src/pathtools.h                               \
   src/parse-gram.y                              \
   src/print-xml.c                               \
   src/print-xml.h                               \
@@ -3646,6 +3650,8 @@ src/bison-nullable.$(OBJEXT): src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
 src/bison-output.$(OBJEXT): src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
+src/bison-pathtools.$(OBJEXT): src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 src/parse-gram.h: src/parse-gram.c
 	@if test ! -f $@; then rm -f src/parse-gram.c; else :; fi
 	@if test ! -f $@; then $(MAKE) $(AM_MAKEFLAGS) src/parse-gram.c; else :; fi
@@ -3950,6 +3956,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/bison-named-ref.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/bison-nullable.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/bison-output.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/bison-pathtools.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/bison-parse-gram.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/bison-print-xml.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/bison-print.Po@am__quote@ # am--include-marker
@@ -4354,6 +4361,20 @@ src/bison-output.obj: src/output.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/output.c' object='src/bison-output.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_bison_CPPFLAGS) $(CPPFLAGS) $(src_bison_CFLAGS) $(CFLAGS) -c -o src/bison-output.obj `if test -f 'src/output.c'; then $(CYGPATH_W) 'src/output.c'; else $(CYGPATH_W) '$(srcdir)/src/output.c'; fi`
+
+src/bison-pathtools.o: src/pathtools.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_bison_CPPFLAGS) $(CPPFLAGS) $(src_bison_CFLAGS) $(CFLAGS) -MT src/bison-pathtools.o -MD -MP -MF src/$(DEPDIR)/bison-pathtools.Tpo -c -o src/bison-pathtools.o `test -f 'src/pathtools.c' || echo '$(srcdir)/'`src/pathtools.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/bison-pathtools.Tpo src/$(DEPDIR)/bison-pathtools.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/pathtools.c' object='src/bison-pathtools.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_bison_CPPFLAGS) $(CPPFLAGS) $(src_bison_CFLAGS) $(CFLAGS) -c -o src/bison-pathtools.o `test -f 'src/pathtools.c' || echo '$(srcdir)/'`src/pathtools.c
+
+src/bison-pathtools.obj: src/pathtools.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_bison_CPPFLAGS) $(CPPFLAGS) $(src_bison_CFLAGS) $(CFLAGS) -MT src/bison-pathtools.obj -MD -MP -MF src/$(DEPDIR)/bison-pathtools.Tpo -c -o src/bison-pathtools.obj `if test -f 'src/pathtools.c'; then $(CYGPATH_W) 'src/pathtools.c'; else $(CYGPATH_W) '$(srcdir)/src/pathtools.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/bison-pathtools.Tpo src/$(DEPDIR)/bison-pathtools.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/pathtools.c' object='src/bison-pathtools.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_bison_CPPFLAGS) $(CPPFLAGS) $(src_bison_CFLAGS) $(CFLAGS) -c -o src/bison-pathtools.obj `if test -f 'src/pathtools.c'; then $(CYGPATH_W) 'src/pathtools.c'; else $(CYGPATH_W) '$(srcdir)/src/pathtools.c'; fi`
 
 src/bison-parse-gram.o: src/parse-gram.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_bison_CPPFLAGS) $(CPPFLAGS) $(src_bison_CFLAGS) $(CFLAGS) -MT src/bison-parse-gram.o -MD -MP -MF src/$(DEPDIR)/bison-parse-gram.Tpo -c -o src/bison-parse-gram.o `test -f 'src/parse-gram.c' || echo '$(srcdir)/'`src/parse-gram.c
@@ -6115,6 +6136,7 @@ distclean: distclean-recursive
 	-rm -f src/$(DEPDIR)/bison-named-ref.Po
 	-rm -f src/$(DEPDIR)/bison-nullable.Po
 	-rm -f src/$(DEPDIR)/bison-output.Po
+	-rm -f src/$(DEPDIR)/bison-pathtools.Po
 	-rm -f src/$(DEPDIR)/bison-parse-gram.Po
 	-rm -f src/$(DEPDIR)/bison-print-xml.Po
 	-rm -f src/$(DEPDIR)/bison-print.Po
@@ -6475,6 +6497,7 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f src/$(DEPDIR)/bison-named-ref.Po
 	-rm -f src/$(DEPDIR)/bison-nullable.Po
 	-rm -f src/$(DEPDIR)/bison-output.Po
+	-rm -f src/$(DEPDIR)/bison-pathtools.Po
 	-rm -f src/$(DEPDIR)/bison-parse-gram.Po
 	-rm -f src/$(DEPDIR)/bison-print-xml.Po
 	-rm -f src/$(DEPDIR)/bison-print.Po
